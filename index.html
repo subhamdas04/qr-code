@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Code Generator</title>
+	<style type="text/css">
+		.code{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid #000;
+			border-radius: 7px;
+			width: 200px;
+			height: 200px;
+		}
+		.textbox{
+			width: 200px;
+			height: 30px;
+			font-size: 15px;
+			padding-left: 5px;
+			border-radius: 5px;
+			outline: none;
+			border: 1px solid #000;
+		}
+		.btn{
+			width: 200px;
+			height: 30px;
+			outline: none;
+			border: 0;
+			cursor: pointer;
+			background: maroon;
+			color: #fff;
+		}
+		.btn:active{
+			background: #000;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function generateFun(){
+			var data = document.getElementsByName("text")[0].value;
+
+			if(data != ""){
+				var url = "https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=" + data;
+
+				document.getElementsByClassName("code")[0].style.backgroundImage = "url(" + url + ")";
+				document.getElementsByClassName("code")[0].style.backgroundSize = "100% 100%";
+				document.getElementsByClassName("code")[0].style.border = "0";
+				document.getElementsByClassName("code")[0].innerHTML = "";
+			}
+		}
+	</script>
+</head>
+<body>
+	<center>
+		<h2>QR Code Generator</h2>
+		<div class="code">
+			<span>Generate QR Code</span>
+		</div>
+		<p>
+		<input type="text" name="text" class="textbox" placeholder="Enter Your Text">
+		<p>
+		<button class="btn" onclick="generateFun()">Generate Code</button>
+	</center>
+</body>
+</html>
